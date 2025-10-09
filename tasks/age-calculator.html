@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1: Age Calculator - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 1: Age Calculator</h1>
+        <p>Practice variables, prompts, alerts, arithmetic operators, conditionals, and Date object</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>Age Calculator</h2>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Ask user for name and birth year</li>
+                <li>Calculate age using current year</li>
+                <li>If age ≥ 18 → display "You are an Adult" else "You are a Minor"</li>
+                <li>Handle invalid inputs (empty, non-numeric, future year)</li>
+            </ul>
+
+            <button class="run-button" onclick="ageCalculator()">Run Age Calculator</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function ageCalculator() {
+    // Ask user for name
+    let name = prompt("Enter your name:");
+    
+    // Check if name is empty or cancelled
+    if (!name || name.trim() === "") {
+        alert("Name is required!");
+        return;
+    }
+    
+    // Ask user for birth year
+    let birthYear = prompt("Enter your birth year:");
+    
+    // Check if birth year is empty or cancelled
+    if (!birthYear || birthYear.trim() === "") {
+        alert("Birth year is required!");
+        return;
+    }
+    
+    // Convert birth year to number
+    birthYear = parseInt(birthYear);
+    
+    // Check if birth year is a valid number
+    if (isNaN(birthYear)) {
+        alert("Please enter a valid numeric birth year!");
+        return;
+    }
+    
+    // Get current year
+    let currentYear = new Date().getFullYear();
+    
+    // Check if birth year is in the future
+    if (birthYear > currentYear) {
+        alert("Birth year cannot be in the future!");
+        return;
+    }
+    
+    // Check if birth year is reasonable (not too old)
+    if (birthYear < 1900) {
+        alert("Please enter a reasonable birth year!");
+        return;
+    }
+    
+    // Calculate age
+    let age = currentYear - birthYear;
+    
+    // Determine if adult or minor
+    let status;
+    if (age >= 18) {
+        status = "You are an Adult";
+    } else {
+        status = "You are a Minor";
+    }
+    
+    // Display result
+    alert(`Hello ${name}!\nYour age is: ${age} years\n${status}`);
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function ageCalculator() {
+            // Ask user for name
+            let name = prompt("Enter your name:");
+            
+            // Check if name is empty or cancelled
+            if (!name || name.trim() === "") {
+                alert("Name is required!");
+                return;
+            }
+            
+            // Ask user for birth year
+            let birthYear = prompt("Enter your birth year:");
+            
+            // Check if birth year is empty or cancelled
+            if (!birthYear || birthYear.trim() === "") {
+                alert("Birth year is required!");
+                return;
+            }
+            
+            // Convert birth year to number
+            birthYear = parseInt(birthYear);
+            
+            // Check if birth year is a valid number
+            if (isNaN(birthYear)) {
+                alert("Please enter a valid numeric birth year!");
+                return;
+            }
+            
+            // Get current year
+            let currentYear = new Date().getFullYear();
+            
+            // Check if birth year is in the future
+            if (birthYear > currentYear) {
+                alert("Birth year cannot be in the future!");
+                return;
+            }
+            
+            // Check if birth year is reasonable (not too old)
+            if (birthYear < 1900) {
+                alert("Please enter a reasonable birth year!");
+                return;
+            }
+            
+            // Calculate age
+            let age = currentYear - birthYear;
+            
+            // Determine if adult or minor
+            let status;
+            if (age >= 18) {
+                status = "You are an Adult";
+            } else {
+                status = "You are a Minor";
+            }
+            
+            // Display result
+            alert(`Hello ${name}!\nYour age is: ${age} years\n${status}`);
+        }
+    </script>
+</body>
+</html>

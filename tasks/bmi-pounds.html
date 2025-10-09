@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4: BMI Calculation (Pounds) - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .formula-box {
+            background-color: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 4: BMI Calculation (Pounds)</h1>
+        <p>Calculate BMI using weight in pounds and height in inches</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>BMI Calculation (Imperial Units)</h2>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Prompt user to enter weight in pounds and height in inches</li>
+                <li>Calculate BMI using imperial formula</li>
+                <li>Round result to tenths (1 decimal place)</li>
+                <li>Handle invalid inputs</li>
+            </ul>
+
+            <div class="formula-box">
+                <h3>BMI Formula (Imperial):</h3>
+                <p><strong>BMI = (weight in pounds × 703) ÷ (height in inches)²</strong></p>
+            </div>
+
+            <button class="run-button" onclick="bmiCalculatorPounds()">Run BMI Calculator (Pounds)</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function bmiCalculatorPounds() {
+    // Ask user for weight in pounds
+    let weight = prompt("Enter your weight in pounds (lb):");
+    
+    // Check if weight is cancelled or empty
+    if (!weight || weight.trim() === "") {
+        alert("Weight is required!");
+        return;
+    }
+    
+    // Convert weight to number
+    weight = parseFloat(weight);
+    
+    // Check if weight is a valid number
+    if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid positive weight!");
+        return;
+    }
+    
+    // Ask user for height in inches
+    let height = prompt("Enter your height in inches (in):");
+    
+    // Check if height is cancelled or empty
+    if (!height || height.trim() === "") {
+        alert("Height is required!");
+        return;
+    }
+    
+    // Convert height to number
+    height = parseFloat(height);
+    
+    // Check if height is a valid number
+    if (isNaN(height) || height <= 0) {
+        alert("Please enter a valid positive height!");
+        return;
+    }
+    
+    // Calculate BMI using imperial formula: (weight in pounds × 703) ÷ (height in inches)²
+    let bmi = (weight * 703) / (height * height);
+    
+    // Convert height to feet and inches for display
+    let feet = Math.floor(height / 12);
+    let inches = height % 12;
+    
+    // Display result rounded to tenths (1 decimal place)
+    alert(`BMI Calculation Result (Imperial Units):\nWeight: ${weight} lbs\nHeight: ${height} inches (${feet}'${inches.toFixed(0)}")\nBMI: ${bmi.toFixed(1)}\n\nFormula: (weight in lbs × 703) ÷ (height in inches)²`);
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function bmiCalculatorPounds() {
+            // Ask user for weight in pounds
+            let weight = prompt("Enter your weight in pounds (lb):");
+            
+            // Check if weight is cancelled or empty
+            if (!weight || weight.trim() === "") {
+                alert("Weight is required!");
+                return;
+            }
+            
+            // Convert weight to number
+            weight = parseFloat(weight);
+            
+            // Check if weight is a valid number
+            if (isNaN(weight) || weight <= 0) {
+                alert("Please enter a valid positive weight!");
+                return;
+            }
+            
+            // Ask user for height in inches
+            let height = prompt("Enter your height in inches (in):");
+            
+            // Check if height is cancelled or empty
+            if (!height || height.trim() === "") {
+                alert("Height is required!");
+                return;
+            }
+            
+            // Convert height to number
+            height = parseFloat(height);
+            
+            // Check if height is a valid number
+            if (isNaN(height) || height <= 0) {
+                alert("Please enter a valid positive height!");
+                return;
+            }
+            
+            // Calculate BMI using imperial formula: (weight in pounds × 703) ÷ (height in inches)²
+            let bmi = (weight * 703) / (height * height);
+            
+            // Convert height to feet and inches for display
+            let feet = Math.floor(height / 12);
+            let inches = height % 12;
+            
+            // Display result rounded to tenths (1 decimal place)
+            alert(`BMI Calculation Result (Imperial Units):\nWeight: ${weight} lbs\nHeight: ${height} inches (${feet}'${inches.toFixed(0)}")\nBMI: ${bmi.toFixed(1)}\n\nFormula: (weight in lbs × 703) ÷ (height in inches)²`);
+        }
+    </script>
+</body>
+</html>

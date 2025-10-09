@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5: Guess the Number - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 5: Guess the Number</h1>
+        <p>Number guessing game with hints and limited attempts</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>Guess the Number Game</h2>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Generate a random number (1–10)</li>
+                <li>Give user 3 attempts to guess</li>
+                <li>Show hints "Too High" or "Too Low"</li>
+                <li>End game if attempts run out or user cancels</li>
+                <li>Use random numbers, loops, conditionals, break, and flags</li>
+            </ul>
+
+            <button class="run-button" onclick="guessTheNumber()">Play Guess the Number</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function guessTheNumber() {
+    // Generate random number between 1 and 10
+    let randomNumber = Math.floor(Math.random() * 10) + 1;
+    let attempts = 0;
+    let maxAttempts = 3;
+    let gameWon = false;
+    
+    alert("Welcome to Guess the Number Game!\nI have picked a number between 1 and 10.\nYou have 3 attempts to guess it!");
+    
+    // Game loop
+    while (attempts < maxAttempts && !gameWon) {
+        let guess = prompt(`Attempt ${attempts + 1}/${maxAttempts}\nEnter your guess (1-10):`);
+        
+        // Check if user cancelled
+        if (guess === null) {
+            alert("Game cancelled!");
+            return;
+        }
+        
+        // Check if input is empty
+        if (guess.trim() === "") {
+            alert("Please enter a number!");
+            continue;
+        }
+        
+        // Convert to number
+        guess = parseInt(guess);
+        
+        // Check if input is a valid number
+        if (isNaN(guess) || guess < 1 || guess > 10) {
+            alert("Please enter a valid number between 1 and 10!");
+            continue;
+        }
+        
+        attempts++;
+        
+        // Check if guess is correct
+        if (guess === randomNumber) {
+            alert(`🎉 Congratulations! You guessed the number ${randomNumber} in ${attempts} attempt(s)!`);
+            gameWon = true;
+            break;
+        } else if (attempts >= maxAttempts) {
+            alert(`😞 Game Over! The number was ${randomNumber}. You used all ${maxAttempts} attempts.`);
+        } else {
+            // Give hint
+            let hint = guess > randomNumber ? "Too High" : "Too Low";
+            alert(`${hint}! You have ${maxAttempts - attempts} attempt(s) left.`);
+        }
+    }
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function guessTheNumber() {
+            // Generate random number between 1 and 10
+            let randomNumber = Math.floor(Math.random() * 10) + 1;
+            let attempts = 0;
+            let maxAttempts = 3;
+            let gameWon = false;
+            
+            alert("Welcome to Guess the Number Game!\nI have picked a number between 1 and 10.\nYou have 3 attempts to guess it!");
+            
+            // Game loop
+            while (attempts < maxAttempts && !gameWon) {
+                let guess = prompt(`Attempt ${attempts + 1}/${maxAttempts}\nEnter your guess (1-10):`);
+                
+                // Check if user cancelled
+                if (guess === null) {
+                    alert("Game cancelled!");
+                    return;
+                }
+                
+                // Check if input is empty
+                if (guess.trim() === "") {
+                    alert("Please enter a number!");
+                    continue;
+                }
+                
+                // Convert to number
+                guess = parseInt(guess);
+                
+                // Check if input is a valid number
+                if (isNaN(guess) || guess < 1 || guess > 10) {
+                    alert("Please enter a valid number between 1 and 10!");
+                    continue;
+                }
+                
+                attempts++;
+                
+                // Check if guess is correct
+                if (guess === randomNumber) {
+                    alert(`🎉 Congratulations! You guessed the number ${randomNumber} in ${attempts} attempt(s)!`);
+                    gameWon = true;
+                    break;
+                } else if (attempts >= maxAttempts) {
+                    alert(`😞 Game Over! The number was ${randomNumber}. You used all ${maxAttempts} attempts.`);
+                } else {
+                    // Give hint
+                    let hint = guess > randomNumber ? "Too High" : "Too Low";
+                    alert(`${hint}! You have ${maxAttempts - attempts} attempt(s) left.`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6: Student Marks & Grade System - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .grade-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .grade-table th, .grade-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .grade-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 6: Student Marks & Grade System</h1>
+        <p>Calculate grades for 5 subjects with total, percentage, and grade assignment</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>Student Marks & Grade System</h2>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Create an array of 5 subjects</li>
+                <li>Ask user to enter marks for each subject</li>
+                <li>Calculate total, percentage, and assign grade</li>
+                <li>Handle invalid marks (negative, >100, non-numeric)</li>
+            </ul>
+
+            <h3>Grading Scale:</h3>
+            <table class="grade-table">
+                <tr>
+                    <th>Percentage</th>
+                    <th>Grade</th>
+                </tr>
+                <tr>
+                    <td>≥ 80</td>
+                    <td>A</td>
+                </tr>
+                <tr>
+                    <td>≥ 60</td>
+                    <td>B</td>
+                </tr>
+                <tr>
+                    <td>< 60</td>
+                    <td>Fail</td>
+                </tr>
+            </table>
+
+            <button class="run-button" onclick="studentGradeSystem()">Run Grade System</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function studentGradeSystem() {
+    // Create array of 5 subjects
+    let subjects = ["Mathematics", "English", "Science", "History", "Computer Science"];
+    let marks = [];
+    let total = 0;
+    
+    alert("Student Grade System\nEnter marks for 5 subjects (out of 100)");
+    
+    // Ask user to enter marks for each subject
+    for (let i = 0; i < subjects.length; i++) {
+        let mark;
+        let validInput = false;
+        
+        while (!validInput) {
+            mark = prompt(`Enter marks for ${subjects[i]} (0-100):`);
+            
+            // Check if user cancelled
+            if (mark === null) {
+                alert("Grade calculation cancelled!");
+                return;
+            }
+            
+            // Check if input is empty
+            if (mark.trim() === "") {
+                alert("Marks are required!");
+                continue;
+            }
+            
+            // Convert to number
+            mark = parseFloat(mark);
+            
+            // Check if input is a valid number
+            if (isNaN(mark)) {
+                alert("Please enter a valid numeric value!");
+                continue;
+            }
+            
+            // Check if marks are in valid range
+            if (mark < 0 || mark > 100) {
+                alert("Marks must be between 0 and 100!");
+                continue;
+            }
+            
+            validInput = true;
+        }
+        
+        marks[i] = mark;
+        total += mark;
+    }
+    
+    // Calculate percentage
+    let percentage = total / subjects.length;
+    
+    // Assign grade
+    let grade;
+    if (percentage >= 80) {
+        grade = "A";
+    } else if (percentage >= 60) {
+        grade = "B";
+    } else {
+        grade = "Fail";
+    }
+    
+    // Display formatted result
+    let result = "Student Grade Report:\n\n";
+    for (let i = 0; i < subjects.length; i++) {
+        result += `${subjects[i]}: ${marks[i]}\n`;
+    }
+    result += `\nTotal Marks: ${total}/500\n`;
+    result += `Percentage: ${percentage.toFixed(2)}%\n`;
+    result += `Grade: ${grade}`;
+    
+    alert(result);
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function studentGradeSystem() {
+            // Create array of 5 subjects
+            let subjects = ["Mathematics", "English", "Science", "History", "Computer Science"];
+            let marks = [];
+            let total = 0;
+            
+            alert("Student Grade System\nEnter marks for 5 subjects (out of 100)");
+            
+            // Ask user to enter marks for each subject
+            for (let i = 0; i < subjects.length; i++) {
+                let mark;
+                let validInput = false;
+                
+                while (!validInput) {
+                    mark = prompt(`Enter marks for ${subjects[i]} (0-100):`);
+                    
+                    // Check if user cancelled
+                    if (mark === null) {
+                        alert("Grade calculation cancelled!");
+                        return;
+                    }
+                    
+                    // Check if input is empty
+                    if (mark.trim() === "") {
+                        alert("Marks are required!");
+                        continue;
+                    }
+                    
+                    // Convert to number
+                    mark = parseFloat(mark);
+                    
+                    // Check if input is a valid number
+                    if (isNaN(mark)) {
+                        alert("Please enter a valid numeric value!");
+                        continue;
+                    }
+                    
+                    // Check if marks are in valid range
+                    if (mark < 0 || mark > 100) {
+                        alert("Marks must be between 0 and 100!");
+                        continue;
+                    }
+                    
+                    validInput = true;
+                }
+                
+                marks[i] = mark;
+                total += mark;
+            }
+            
+            // Calculate percentage
+            let percentage = total / subjects.length;
+            
+            // Assign grade
+            let grade;
+            if (percentage >= 80) {
+                grade = "A";
+            } else if (percentage >= 60) {
+                grade = "B";
+            } else {
+                grade = "Fail";
+            }
+            
+            // Display formatted result
+            let result = "Student Grade Report:\n\n";
+            for (let i = 0; i < subjects.length; i++) {
+                result += `${subjects[i]}: ${marks[i]}\n`;
+            }
+            result += `\nTotal Marks: ${total}/500\n`;
+            result += `Percentage: ${percentage.toFixed(2)}%\n`;
+            result += `Grade: ${grade}`;
+            
+            alert(result);
+        }
+    </script>
+</body>
+</html>

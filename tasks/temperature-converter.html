@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2: Temperature Converter - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 2: Temperature Converter</h1>
+        <p>Convert temperatures between Fahrenheit and Celsius with user choice selection</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>Temperature Converter</h2>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Take user choice as input in a prompt box</li>
+                <li>Input a temperature, convert, and display with 2 decimal places</li>
+                <li>Handle invalid numeric inputs (NaN, empty, cancel)</li>
+                <li>User Choice 1: Fahrenheit to Celsius: (°F − 32) ÷ 1.8 = °C</li>
+                <li>User Choice 2: Celsius to Fahrenheit: (°C × 1.8) + 32 = °F</li>
+            </ul>
+
+            <button class="run-button" onclick="temperatureConverter()">Run Temperature Converter</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function temperatureConverter() {
+    // Ask user for conversion choice
+    let choice = prompt("Choose conversion type:\n1. Fahrenheit to Celsius\n2. Celsius to Fahrenheit\n\nEnter 1 or 2:");
+    
+    // Check if choice is cancelled or empty
+    if (!choice || choice.trim() === "") {
+        alert("Conversion choice is required!");
+        return;
+    }
+    
+    // Check if choice is valid (1 or 2)
+    if (choice !== "1" && choice !== "2") {
+        alert("Invalid choice! Please enter 1 or 2.");
+        return;
+    }
+    
+    // Ask user for temperature value
+    let temperature = prompt("Enter the temperature value:");
+    
+    // Check if temperature is cancelled or empty
+    if (!temperature || temperature.trim() === "") {
+        alert("Temperature value is required!");
+        return;
+    }
+    
+    // Convert temperature to number
+    temperature = parseFloat(temperature);
+    
+    // Check if temperature is a valid number
+    if (isNaN(temperature)) {
+        alert("Please enter a valid numeric temperature!");
+        return;
+    }
+    
+    let convertedTemp;
+    let fromUnit, toUnit, formula;
+    
+    if (choice === "1") {
+        // Fahrenheit to Celsius: (°F − 32) ÷ 1.8 = °C
+        convertedTemp = (temperature - 32) / 1.8;
+        fromUnit = "°F";
+        toUnit = "°C";
+        formula = "(°F − 32) ÷ 1.8 = °C";
+    } else {
+        // Celsius to Fahrenheit: (°C × 1.8) + 32 = °F
+        convertedTemp = (temperature * 1.8) + 32;
+        fromUnit = "°C";
+        toUnit = "°F";
+        formula = "(°C × 1.8) + 32 = °F";
+    }
+    
+    // Display result with 2 decimal places
+    alert(`Temperature Conversion Result:\nOriginal: ${temperature}${fromUnit}\nConverted: ${convertedTemp.toFixed(2)}${toUnit}\nFormula: ${formula}`);
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function temperatureConverter() {
+            // Ask user for conversion choice
+            let choice = prompt("Choose conversion type:\n1. Fahrenheit to Celsius\n2. Celsius to Fahrenheit\n\nEnter 1 or 2:");
+            
+            // Check if choice is cancelled or empty
+            if (!choice || choice.trim() === "") {
+                alert("Conversion choice is required!");
+                return;
+            }
+            
+            // Check if choice is valid (1 or 2)
+            if (choice !== "1" && choice !== "2") {
+                alert("Invalid choice! Please enter 1 or 2.");
+                return;
+            }
+            
+            // Ask user for temperature value
+            let temperature = prompt("Enter the temperature value:");
+            
+            // Check if temperature is cancelled or empty
+            if (!temperature || temperature.trim() === "") {
+                alert("Temperature value is required!");
+                return;
+            }
+            
+            // Convert temperature to number
+            temperature = parseFloat(temperature);
+            
+            // Check if temperature is a valid number
+            if (isNaN(temperature)) {
+                alert("Please enter a valid numeric temperature!");
+                return;
+            }
+            
+            let convertedTemp;
+            let fromUnit, toUnit, formula;
+            
+            if (choice === "1") {
+                // Fahrenheit to Celsius: (°F − 32) ÷ 1.8 = °C
+                convertedTemp = (temperature - 32) / 1.8;
+                fromUnit = "°F";
+                toUnit = "°C";
+                formula = "(°F − 32) ÷ 1.8 = °C";
+            } else {
+                // Celsius to Fahrenheit: (°C × 1.8) + 32 = °F
+                convertedTemp = (temperature * 1.8) + 32;
+                fromUnit = "°C";
+                toUnit = "°F";
+                formula = "(°C × 1.8) + 32 = °F";
+            }
+            
+            // Display result with 2 decimal places
+            alert(`Temperature Conversion Result:\nOriginal: ${temperature}${fromUnit}\nConverted: ${convertedTemp.toFixed(2)}${toUnit}\nFormula: ${formula}`);
+        }
+    </script>
+</body>
+</html>

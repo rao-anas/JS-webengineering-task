@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 3: BMI Categorization - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .bmi-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .bmi-table th, .bmi-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .bmi-table th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 3: BMI Categorization</h1>
+        <p>Calculate BMI and categorize as underweight, normal, overweight, or obese</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>BMI Categorization</h2>
+            <p><strong>Requirements:</strong></p>
+            <ul>
+                <li>Calculate user's body mass index (BMI)</li>
+                <li>Categorize BMI according to CDC guidelines</li>
+                <li>Handle invalid inputs</li>
+            </ul>
+
+            <h3>BMI Categories (CDC Guidelines):</h3>
+            <table class="bmi-table">
+                <tr>
+                    <th>BMI</th>
+                    <th>Weight Status</th>
+                </tr>
+                <tr>
+                    <td>Below 18.5</td>
+                    <td>Underweight</td>
+                </tr>
+                <tr>
+                    <td>18.5 – 24.9</td>
+                    <td>Normal</td>
+                </tr>
+                <tr>
+                    <td>25.0 – 29.9</td>
+                    <td>Overweight</td>
+                </tr>
+                <tr>
+                    <td>30.0 and above</td>
+                    <td>Obese</td>
+                </tr>
+            </table>
+
+            <button class="run-button" onclick="bmiCalculator()">Run BMI Calculator</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function bmiCalculator() {
+    // Ask user for weight in kg
+    let weight = prompt("Enter your weight in kilograms (kg):");
+    
+    // Check if weight is cancelled or empty
+    if (!weight || weight.trim() === "") {
+        alert("Weight is required!");
+        return;
+    }
+    
+    // Convert weight to number
+    weight = parseFloat(weight);
+    
+    // Check if weight is a valid number
+    if (isNaN(weight) || weight <= 0) {
+        alert("Please enter a valid positive weight!");
+        return;
+    }
+    
+    // Ask user for height in meters
+    let height = prompt("Enter your height in meters (m):");
+    
+    // Check if height is cancelled or empty
+    if (!height || height.trim() === "") {
+        alert("Height is required!");
+        return;
+    }
+    
+    // Convert height to number
+    height = parseFloat(height);
+    
+    // Check if height is a valid number
+    if (isNaN(height) || height <= 0) {
+        alert("Please enter a valid positive height!");
+        return;
+    }
+    
+    // Calculate BMI
+    let bmi = weight / (height * height);
+    
+    // Categorize BMI according to CDC guidelines
+    let category;
+    if (bmi < 18.5) {
+        category = "Underweight";
+    } else if (bmi >= 18.5 && bmi <= 24.9) {
+        category = "Normal";
+    } else if (bmi >= 25.0 && bmi <= 29.9) {
+        category = "Overweight";
+    } else {
+        category = "Obese";
+    }
+    
+    // Display result
+    alert(`BMI Calculation Result:\nWeight: ${weight} kg\nHeight: ${height} m\nBMI: ${bmi.toFixed(2)}\nCategory: ${category}`);
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function bmiCalculator() {
+            // Ask user for weight in kg
+            let weight = prompt("Enter your weight in kilograms (kg):");
+            
+            // Check if weight is cancelled or empty
+            if (!weight || weight.trim() === "") {
+                alert("Weight is required!");
+                return;
+            }
+            
+            // Convert weight to number
+            weight = parseFloat(weight);
+            
+            // Check if weight is a valid number
+            if (isNaN(weight) || weight <= 0) {
+                alert("Please enter a valid positive weight!");
+                return;
+            }
+            
+            // Ask user for height in meters
+            let height = prompt("Enter your height in meters (m):");
+            
+            // Check if height is cancelled or empty
+            if (!height || height.trim() === "") {
+                alert("Height is required!");
+                return;
+            }
+            
+            // Convert height to number
+            height = parseFloat(height);
+            
+            // Check if height is a valid number
+            if (isNaN(height) || height <= 0) {
+                alert("Please enter a valid positive height!");
+                return;
+            }
+            
+            // Calculate BMI
+            let bmi = weight / (height * height);
+            
+            // Categorize BMI according to CDC guidelines
+            let category;
+            if (bmi < 18.5) {
+                category = "Underweight";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                category = "Normal";
+            } else if (bmi >= 25.0 && bmi <= 29.9) {
+                category = "Overweight";
+            } else {
+                category = "Obese";
+            }
+            
+            // Display result
+            alert(`BMI Calculation Result:\nWeight: ${weight} kg\nHeight: ${height} m\nBMI: ${bmi.toFixed(2)}\nCategory: ${category}`);
+        }
+    </script>
+</body>
+</html>

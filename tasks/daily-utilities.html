@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 7: Daily Utilities Toolkit - JavaScript Assignment</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .exercise-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .run-button {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+        }
+        .run-button:hover {
+            background-color: #218838;
+        }
+        .back-button {
+            background-color: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+        .code-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .code-section pre {
+            margin: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Exercise 7: Daily Utilities Toolkit</h1>
+        <p>Menu-driven toolkit with name formatting, OTP generation, city search, and calculator</p>
+    </header>
+
+    <main>
+        <div class="exercise-container">
+            <a href="../index.html" class="back-button">← Back to Home</a>
+            
+            <h2>Daily Utilities Toolkit</h2>
+            <p><strong>Menu Options:</strong></p>
+            <ul>
+                <li>1. Format Name (capitalize first letter of each word)</li>
+                <li>2. Generate Random 4-digit OTP</li>
+                <li>3. Search City in array ["Karachi", "Lahore", "Islamabad"]</li>
+                <li>4. Show Today's Date in dd/mm/yyyy format</li>
+                <li>5. Mini Calculator (add, subtract, multiply, divide)</li>
+                <li>6. Exit</li>
+            </ul>
+
+            <button class="run-button" onclick="dailyUtilitiesToolkit()">Run Daily Utilities Toolkit</button>
+
+            <div class="code-section">
+                <h3>JavaScript Code:</h3>
+                <pre>
+function dailyUtilitiesToolkit() {
+    let cities = ["Karachi", "Lahore", "Islamabad"];
+    
+    while (true) {
+        let choice = prompt(`Daily Utilities Toolkit\n\nChoose an option:\n1. Format Name\n2. Generate 4-digit OTP\n3. Search City\n4. Show Today's Date\n5. Mini Calculator\n6. Exit\n\nEnter your choice (1-6):`);
+        
+        if (choice === null || choice === "6") {
+            alert("Thank you for using Daily Utilities Toolkit!");
+            break;
+        }
+        
+        switch (choice) {
+            case "1":
+                formatName();
+                break;
+            case "2":
+                generateOTP();
+                break;
+            case "3":
+                searchCity(cities);
+                break;
+            case "4":
+                showTodaysDate();
+                break;
+            case "5":
+                miniCalculator();
+                break;
+            default:
+                alert("Invalid option! Please enter a number between 1-6.");
+        }
+    }
+}
+
+function formatName() {
+    let name = prompt("Enter a name to format:");
+    if (!name || name.trim() === "") {
+        alert("Name is required!");
+        return;
+    }
+    
+    // Split name into words and capitalize first letter of each word
+    let formattedName = name.toLowerCase().split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(' ');
+    
+    alert(`Original: ${name}\nFormatted: ${formattedName}`);
+}
+
+function generateOTP() {
+    // Generate random 4-digit OTP
+    let otp = Math.floor(1000 + Math.random() * 9000);
+    alert(`Your 4-digit OTP is: ${otp}`);
+}
+
+function searchCity(cities) {
+    let searchCity = prompt("Enter city name to search:");
+    if (!searchCity || searchCity.trim() === "") {
+        alert("City name is required!");
+        return;
+    }
+    
+    // Search for city (case-insensitive)
+    let found = false;
+    for (let i = 0; i < cities.length; i++) {
+        if (cities[i].toLowerCase() === searchCity.toLowerCase()) {
+            found = true;
+            break;
+        }
+    }
+    
+    if (found) {
+        alert(`✓ City "${searchCity}" found in the list!`);
+    } else {
+        alert(`✗ City "${searchCity}" not found in the list.\nAvailable cities: ${cities.join(", ")}`);
+    }
+}
+
+function showTodaysDate() {
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+    
+    let formattedDate = `${day}/${month}/${year}`;
+    alert(`Today's Date: ${formattedDate}`);
+}
+
+function miniCalculator() {
+    let num1 = prompt("Enter first number:");
+    if (!num1 || num1.trim() === "") {
+        alert("First number is required!");
+        return;
+    }
+    
+    num1 = parseFloat(num1);
+    if (isNaN(num1)) {
+        alert("Please enter a valid first number!");
+        return;
+    }
+    
+    let operation = prompt("Choose operation:\n+ (Add)\n- (Subtract)\n* (Multiply)\n/ (Divide)\n\nEnter operation:");
+    if (!operation || !["+", "-", "*", "/"].includes(operation)) {
+        alert("Invalid operation! Please enter +, -, *, or /");
+        return;
+    }
+    
+    let num2 = prompt("Enter second number:");
+    if (!num2 || num2.trim() === "") {
+        alert("Second number is required!");
+        return;
+    }
+    
+    num2 = parseFloat(num2);
+    if (isNaN(num2)) {
+        alert("Please enter a valid second number!");
+        return;
+    }
+    
+    let result;
+    switch (operation) {
+        case "+":
+            result = num1 + num2;
+            break;
+        case "-":
+            result = num1 - num2;
+            break;
+        case "*":
+            result = num1 * num2;
+            break;
+        case "/":
+            if (num2 === 0) {
+                alert("Error: Division by zero is not allowed!");
+                return;
+            }
+            result = num1 / num2;
+            break;
+    }
+    
+    alert(`Calculation Result:\n${num1} ${operation} ${num2} = ${result}`);
+}
+                </pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>JavaScript Programming Assignment - SEL 310 Web Engineering Lab</p>
+        <p>Student: Rao Anas | Enrollment: 02-134231-065</p>
+    </footer>
+
+    <script>
+        function dailyUtilitiesToolkit() {
+            let cities = ["Karachi", "Lahore", "Islamabad"];
+            
+            while (true) {
+                let choice = prompt(`Daily Utilities Toolkit\n\nChoose an option:\n1. Format Name\n2. Generate 4-digit OTP\n3. Search City\n4. Show Today's Date\n5. Mini Calculator\n6. Exit\n\nEnter your choice (1-6):`);
+                
+                if (choice === null || choice === "6") {
+                    alert("Thank you for using Daily Utilities Toolkit!");
+                    break;
+                }
+                
+                switch (choice) {
+                    case "1":
+                        formatName();
+                        break;
+                    case "2":
+                        generateOTP();
+                        break;
+                    case "3":
+                        searchCity(cities);
+                        break;
+                    case "4":
+                        showTodaysDate();
+                        break;
+                    case "5":
+                        miniCalculator();
+                        break;
+                    default:
+                        alert("Invalid option! Please enter a number between 1-6.");
+                }
+            }
+        }
+
+        function formatName() {
+            let name = prompt("Enter a name to format:");
+            if (!name || name.trim() === "") {
+                alert("Name is required!");
+                return;
+            }
+            
+            // Split name into words and capitalize first letter of each word
+            let formattedName = name.toLowerCase().split(' ').map(word => 
+                word.charAt(0).toUpperCase() + word.slice(1)
+            ).join(' ');
+            
+            alert(`Original: ${name}\nFormatted: ${formattedName}`);
+        }
+
+        function generateOTP() {
+            // Generate random 4-digit OTP
+            let otp = Math.floor(1000 + Math.random() * 9000);
+            alert(`Your 4-digit OTP is: ${otp}`);
+        }
+
+        function searchCity(cities) {
+            let searchCity = prompt("Enter city name to search:");
+            if (!searchCity || searchCity.trim() === "") {
+                alert("City name is required!");
+                return;
+            }
+            
+            // Search for city (case-insensitive)
+            let found = false;
+            for (let i = 0; i < cities.length; i++) {
+                if (cities[i].toLowerCase() === searchCity.toLowerCase()) {
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (found) {
+                alert(`✓ City "${searchCity}" found in the list!`);
+            } else {
+                alert(`✗ City "${searchCity}" not found in the list.\nAvailable cities: ${cities.join(", ")}`);
+            }
+        }
+
+        function showTodaysDate() {
+            let today = new Date();
+            let day = String(today.getDate()).padStart(2, '0');
+            let month = String(today.getMonth() + 1).padStart(2, '0');
+            let year = today.getFullYear();
+            
+            let formattedDate = `${day}/${month}/${year}`;
+            alert(`Today's Date: ${formattedDate}`);
+        }
+
+        function miniCalculator() {
+            let num1 = prompt("Enter first number:");
+            if (!num1 || num1.trim() === "") {
+                alert("First number is required!");
+                return;
+            }
+            
+            num1 = parseFloat(num1);
+            if (isNaN(num1)) {
+                alert("Please enter a valid first number!");
+                return;
+            }
+            
+            let operation = prompt("Choose operation:\n+ (Add)\n- (Subtract)\n* (Multiply)\n/ (Divide)\n\nEnter operation:");
+            if (!operation || !["+", "-", "*", "/"].includes(operation)) {
+                alert("Invalid operation! Please enter +, -, *, or /");
+                return;
+            }
+            
+            let num2 = prompt("Enter second number:");
+            if (!num2 || num2.trim() === "") {
+                alert("Second number is required!");
+                return;
+            }
+            
+            num2 = parseFloat(num2);
+            if (isNaN(num2)) {
+                alert("Please enter a valid second number!");
+                return;
+            }
+            
+            let result;
+            switch (operation) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    if (num2 === 0) {
+                        alert("Error: Division by zero is not allowed!");
+                        return;
+                    }
+                    result = num1 / num2;
+                    break;
+            }
+            
+            alert(`Calculation Result:\n${num1} ${operation} ${num2} = ${result}`);
+        }
+    </script>
+</body>
+</html>
